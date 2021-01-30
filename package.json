@@ -1,7 +1,12 @@
 {
   "name": "sms-activate-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.4",
+  "private": false,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
+    "build": "tsc",
+    "publish": "yarn build && npm publish",
     "start": "ts-node ./src/app.ts"
   },
   "dependencies": {
