@@ -1,4 +1,3 @@
-import "dotenv/config";
 import fetch from "node-fetch";
 import qs from "qs";
 import { mutateBooleans, sleep } from "./utils";
