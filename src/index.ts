@@ -50,7 +50,9 @@ const waitForCode = async (
     return waitForCode(apiKey, id, interval);
   }
 
-  if (status !== "STATUS_OK") throw new Error("Error waiting for code: " + status);
+  if (!status.startsWith("STATUS_OK"))
+    throw new Error("Error waiting for code: " + status);
+
   return status.split(":")[1];
 };
 
