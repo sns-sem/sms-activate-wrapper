@@ -39,15 +39,17 @@ const orderNumber = async (
 const waitForCode = async (
   apiKey: string,
   id: string,
-  interval = 2000
-): Promise<string> => {
+  interval = 2000,
+  attempts = 60
+): Promise<string | null> => {
+  if (attempts === 0) return null;
   const status = await fetch(`${getBaseUrl(apiKey)}&action=getStatus&id=${id}`)
     .then(res => res.text())
     .catch(_ => null);
 
   if (!status || /WAIT/.test(status)) {
     await sleep(2000);
-    return waitForCode(apiKey, id, interval);
+    return waitForCode(apiKey, id, interval, attempts - 1);
   }
 
   if (!status.startsWith("STATUS_OK"))
